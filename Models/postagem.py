@@ -11,3 +11,18 @@ class PostagemModel():
         self.tags = tags
         self.createdAt = createdAt
         self.updateAt = updateAt
+
+    def json(self):
+        return{
+            'id_postagem':self.id_postagem,
+            'title' : self.title,
+            'content' : self.content,
+            'category' : self.category,
+            'tags' : self.tags,
+            'createdAt' : self.createdAt,
+            'updateAt' : self.updateAt
+        }
+    @classmethod
+    def postagem(cls, id_postagem):
+        pass
+    
