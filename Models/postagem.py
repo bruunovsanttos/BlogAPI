@@ -25,4 +25,3 @@ class PostagemModel():
     @classmethod
     def postagem(cls, id_postagem):
         pass
-    
