@@ -4,4 +4,4 @@ from flask import request, jsonify
 import datetime
 
 class Postagem(Resource):
-
+    pass
