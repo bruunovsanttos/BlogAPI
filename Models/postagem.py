@@ -9,12 +9,12 @@ class PostagemModel(banco.Model):
 
     # estancia as colunas dessa tabela abaixo
     id_postagem = banco.Column(banco.String, primary_key=True)
-    title = banco.Column(banco.String(80))  # estancia o nome com 80 caracteres
-    content = banco.Column(banco.String(500))  # estancia estrelas com uma casa depois da virgula
-    category = banco.Column(banco.String(150))  # estancia diaria com duas casa depois da virgula
-    tags = banco.Column(banco.String(100))  # estancia com 40 caracteres o nome da cidade
-    createdAt = banco.Column(banco.String(40))
-    updateAt = banco.Column(banco.String(40))
+    title = banco.Column(banco.String(80))
+    content = banco.Column(banco.text)
+    category = banco.Column(banco.String(150))
+    tags = banco.Column(banco.String(100))
+    createdAt = banco.Column(banco.DateTime, default=datetime.utcnow)
+    updateAt = banco.Column(banco.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
 
@@ -38,6 +38,9 @@ class PostagemModel(banco.Model):
             'createdAt' : self.createdAt,
             'updateAt' : self.updateAt
         }
+    @classmethod
+    def find_by_id(cls, id_postagem):
+        return cls.query.filter_by(id_postagem=id_postagem).first()
     @classmethod
     def postagem(cls, id_postagem):
         pass
