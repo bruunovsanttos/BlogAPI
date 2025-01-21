@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bfdb2555-30dc-4dd4-8567-64fce73af10f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/postagem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/postagem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/postagem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/postagem.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

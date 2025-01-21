@@ -4,4 +4,12 @@ from flask import request, jsonify
 import datetime
 
 class Postagem(Resource):
-    pass
+    def get(self, id_postagem):
+        postagem = PostagemModel.find_by_id(id_postagem)
+        if postagem:
+            return jsonify(postagem.json())
+        return {'message' : 'postagem não encontrada'}, 404
+
+        else:
+        
+
