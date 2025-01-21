@@ -23,9 +23,11 @@ class Postagem(Resource):
             return {'message':'Postagem não encontrada'}, 404
 
         else:
-            banco.session.delete(postagem)
-            banco.session.commit()
-            return '', 204
-
+            try:
+                postagem.delete_hotel()
+            except:
+                return {'message': 'An error ocurred trying to delete postagem.'}, 500
+            return {'message': 'Postagem delete'}
+        
 
 

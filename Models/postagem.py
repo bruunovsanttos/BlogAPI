@@ -44,3 +44,7 @@ class PostagemModel(banco.Model):
     @classmethod
     def postagem(cls, id_postagem):
         pass
+
+    def delete_postagem(self):
+        banco.session.delete(self)
+        banco.session.commit()
