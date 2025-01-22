@@ -14,7 +14,32 @@ class Postagem(Resource):
         pass
 
     def post(self):
-        pass
+        def post(self):
+            # Recebe os dados da requisição
+            dados = request.get_json()
+
+            # Validação de campos obrigatórios
+            if not dados or not dados.get('title') or not dados.get('content') or not dados.get('category'):
+                return {'message': 'Campos title, content e category são obrigatórios.'}, 400
+
+            try:
+                # Cria uma nova postagem
+                postagem = PostagemModel(
+                    id_postagem= dados['id_postagem'],
+                    title=dados['title'],
+                    content=dados['content'],
+                    category=dados['category'],
+                    tags=dados.get('tags', []),
+                    createdAt=datetime.datetime.utcnow(),
+                    updateAt=datetime.datetime.utcnow()
+                )
+
+                # Adiciona e comita a postagem no banco
+                Models.postagem(dados)
+
+                return jsonify(postagem.json()), 201  # Retorna o objeto criado com status 201
+            except Exception as e:
+                return {'message': 'Erro ao criar postagem: ' + str(e)}, 500
 
     def delete(self, id_postagem):
         postagem = PostagemModel.find_by_id(id_postagem)

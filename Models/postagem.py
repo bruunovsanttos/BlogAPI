@@ -42,8 +42,9 @@ class PostagemModel(banco.Model):
     def find_by_id(cls, id_postagem):
         return cls.query.filter_by(id_postagem=id_postagem).first()
     @classmethod
-    def postagem(cls, id_postagem):
-        pass
+    def postagem(cls, self):
+        banco.session.add(self)
+        banco.session.commit()
 
     def delete_postagem(self):
         banco.session.delete(self)
