@@ -15,7 +15,8 @@ class PostagemModel(banco.Model):
     category = banco.Column(banco.String(100))
     tags = banco.Column(banco.String(100))
     createdAt = banco.Column(banco.Datetime, default=datetime.now())
-    updateAt = banco.Colum(banco.Datetime, defau)
+    updateAt = banco.Colum(banco.Datetime, default=datetime.now())
+    
 
 
 #necessario ter id, titulo, conteudo, categoria, tags (mas pode deixar null), criado em , atualizado em.
