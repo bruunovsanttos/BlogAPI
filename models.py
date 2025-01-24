@@ -3,7 +3,7 @@
 #criação tambem da def para tranformar em dict as infos
 
 from sqlalchemy import banco
-import datetime
+from datetime import datetime
 
 class PostagemModel(banco.Model):
     __tablename__ = 'postagem'
