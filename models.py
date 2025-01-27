@@ -2,7 +2,7 @@
 #modelo de criação do banco de dados com quantidade de caracteres e primary key
 #criação tambem da def para tranformar em dict as infos
 
-from sqlalchemy import banco
+from sqlalchemy import banco, func
 from datetime import datetime
 
 class PostagemModel(banco.Model):
@@ -31,6 +31,16 @@ class PostagemModel(banco.Model):
 
 
     def json(self):
-        pass
+        return {
+            'id_postagem':self.id_postagem,
+            'title': self.title,
+            'content': self.content,
+            'category': self.category,
+            'tags': self.tags,
+            'createdAt': self.createdAt,
+            'updateAt': self.updateAt
+        }
+
+    
 
     
