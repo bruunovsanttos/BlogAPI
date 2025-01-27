@@ -49,7 +49,7 @@ class PostagemModel(banco.Model):
         banco.session.add(self)
         banco.session.commit()
 
-    #para normalizar os dados para salvar depois. 
+    #para normalizar os dados para salvar depois.
     def update_post(self, title, content, category, tags, updateAt):
         self.title = title
         self.content = content
