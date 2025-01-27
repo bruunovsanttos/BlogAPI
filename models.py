@@ -32,7 +32,7 @@ class PostagemModel(banco.Model):
 
     def json(self):
         return {
-            'id_postagem':self.id_postagem,
+            'id_postagem': self.id_postagem,
             'title': self.title,
             'content': self.content,
             'category': self.category,
@@ -40,7 +40,23 @@ class PostagemModel(banco.Model):
             'createdAt': self.createdAt,
             'updateAt': self.updateAt
         }
+    #Criando salvamento de banco de dados apra utilizar no resource a função para salvar os dados no banco de dados
+    def save_post(self):
+        banco.session.add(self)
+        banco.session.commit()
 
-    
+    def delete_post(self):
+        banco.session.add(self)
+        banco.session.commit()
+
+    #para normalizar os dados para salvar depois. 
+    def update_post(self, title, content, category, tags, updateAt):
+        self.title = title
+        self.content = content
+        self.category = category
+        self.tags = tags
+        self.updateAt = updateAt
+
+
 
     
