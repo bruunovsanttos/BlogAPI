@@ -5,10 +5,13 @@ from models import PostagemModel
 import sqlite3
 
 class Postagem(Resource):
-    def get(self):
+    def get(self, id_postagem):
         #de alguma forma eu tenho que receber as informações do banco de dados
         #Tenho que fazer uma função no models para receber as postagens do banco
-        pass
+        postagem = PostagemModel.achar_postagem(id_postagem)
+        if postagem:
+            return postagem.json()
+        return{'message':'Postagem not found.'}, 404 #erro por não achar nenhuma postagem 
 
     def put(self):
         pass
