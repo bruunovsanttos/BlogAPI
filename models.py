@@ -58,5 +58,9 @@ class PostagemModel(banco.Model):
         self.updateAt = updateAt
 
 
-
-    
+    @classmethod
+    def achar_postagem(cls, id_postagem):
+        postagem = cls.query.filter_by(id_postagem=id_postagem).first()
+        if postagem:
+            return postagem
+        return None
