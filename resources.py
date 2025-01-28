@@ -11,7 +11,7 @@ class Postagem(Resource):
         postagem = PostagemModel.achar_postagem(id_postagem)
         if postagem:
             return postagem.json()
-        return{'message':'Postagem not found.'}, 404 #erro por não achar nenhuma postagem 
+        return{'message':'Postagem not found.'}, 404 #erro por não achar nenhuma postagem
 
     def put(self):
         pass

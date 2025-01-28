@@ -4,7 +4,7 @@
 #inicialição do app
 from flask import Flask, jsonify
 from flask_restful import Api
-#from resources import #importar a classe de reource para postagem
+from resources import Postagem
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,12 +19,7 @@ api = Api(app)
 
 # a partir daqui colocar os endpoints para os metodos do resource
 
-
-
-
-
-
-
+api.add_resource(Postagem, '/postagens')
 
 
 #__________________________________________________________________________
