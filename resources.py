@@ -10,7 +10,7 @@ class Postagem(Resource):
         #Tenho que fazer uma função no models para receber as postagens do banco
         postagem = PostagemModel.achar_postagem(id_postagem)
         if postagem:
-            return postagem.json()
+            return postagem.json(), 200
         return{'message':'Postagem not found.'}, 404 #erro por não achar nenhuma postagem
 
     def put(self):

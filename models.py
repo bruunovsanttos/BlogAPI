@@ -2,8 +2,9 @@
 #modelo de criação do banco de dados com quantidade de caracteres e primary key
 #criação tambem da def para tranformar em dict as infos
 
-from sqlalchemy import banco, func
-from datetime import datetime
+from extensions import banco
+from sqlalchemy import func, DateTime
+#from datetime import Datetime
 
 class PostagemModel(banco.Model):
     __tablename__ = 'postagem'
@@ -14,20 +15,19 @@ class PostagemModel(banco.Model):
     content = banco.Column(banco.String(1000))
     category = banco.Column(banco.String(100))
     tags = banco.Column(banco.String(100))
-    createdAt = banco.Column(banco.Datetime, default=func.now())
-    updateAt = banco.Colum(banco.Datetime, default=func.now(), onupdate=func.now()) #onupdate=func.now() faz com que o valor dessa coluna seja automaticamente atualizado para a data/hora atual sempre que o registro for modificado.
+    createdAt = banco.Column(DateTime, default=func.now())
+    updateAt = banco.Column(DateTime, default=func.now(), onupdate=func.now()) #onupdate=func.now() faz com que o valor dessa coluna seja automaticamente atualizado para a data/hora atual sempre que o registro for modificado.
 
 
 
 #necessario ter id, titulo, conteudo, categoria, tags (mas pode deixar null), criado em , atualizado em.
-    def __init__(self, id_postagem, title, content, category, tags, createdAt, updateAt):
+    def __init__(self, id_postagem, title, content, category, tags):
         self.id_postagem = id_postagem
         self.title = title
         self.content = content
         self.category = category
         self.tags = tags
-        self.createdAt = createdAt
-        self.updateAt = updateAt
+
 
 
     def json(self):
@@ -46,7 +46,7 @@ class PostagemModel(banco.Model):
         banco.session.commit()
 
     def delete_post(self):
-        banco.session.add(self)
+        banco.session.delete(self)
         banco.session.commit()
 
     #para normalizar os dados para salvar depois.
