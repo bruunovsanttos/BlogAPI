@@ -5,6 +5,15 @@ from models import PostagemModel
 import sqlite3
 
 class Postagem(Resource):
+
+    argumentos = reqparse.RequestParser()
+    argumentos.add_argument('title', type=str, required=True, help="O campo 'title' não pode ser deixado em branco")
+    argumentos.add_argument('content', type=str, required=True, help="o campo 'content' não pode ser deixado em branco")
+    argumentos.add_argument('category', type=str)
+    argumentos.add_argument('tags', type=str)
+
+
+
     def get(self, id_postagem):#procura postagem por ID
         #de alguma forma eu tenho que receber as informações do banco de dados
         #Tenho que fazer uma função no models para receber as postagens do banco
@@ -16,7 +25,19 @@ class Postagem(Resource):
     def put(self):
         pass
 
-    def post(self):
+    def post(self, id_postagem):
+        if PostagemModel.achar_postagem(id_postagem):
+            return{'message': f"Postagem id '{id_postagem}' alredy exists"}, 400 #dando erro
+
+        dados = Postagem.argumentos.parse_args()
+        postagem = PostagemModel(id_postagem, **dados)
+        try:
+            postagem.save_post()
+        except:
+            return {'message': 'An internal erros ocurred trying save post'}, 500
+        return postagem.json()
+        
+
         pass
 
     def delete(self):
