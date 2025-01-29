@@ -37,8 +37,8 @@ class PostagemModel(banco.Model):
             'content': self.content,
             'category': self.category,
             'tags': self.tags,
-            'createdAt': self.createdAt,
-            'updateAt': self.updateAt
+            'createdAt': self.createdAt.strftime('%Y-%m-%d %H:%M:%S'), #utilizar a forma para o json ler a data da publicação.
+            'updateAt': self.updateAt.strftime('%Y-%m-%d %H:%M:%S') if self.createdAt else None
         }
     #Criando salvamento de banco de dados apra utilizar no resource a função para salvar os dados no banco de dados
     def save_post(self):

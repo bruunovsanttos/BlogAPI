@@ -24,6 +24,7 @@ api = Api(app)
 api.add_resource(Postagem, '/postagens/<string:id_postagem>')
 
 
+
 #__________________________________________________________________________
 
 if __name__ == '__main__':

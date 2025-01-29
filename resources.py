@@ -33,12 +33,12 @@ class Postagem(Resource):
         postagem = PostagemModel(id_postagem, **dados)
         try:
             postagem.save_post()
+            return postagem.json(), 200
+
         except:
             return {'message': 'An internal erros ocurred trying save post'}, 500
         return postagem.json()
-        
 
-        pass
 
     def delete(self):
         pass
