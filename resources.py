@@ -22,8 +22,6 @@ class Postagem(Resource):
             return postagem.json(), 200
         return{'message': 'Postagem not found.'}, 404 #erro por não achar nenhuma postagem
 
-    def put(self):
-        pass
 
     def post(self, id_postagem):
         if PostagemModel.achar_postagem(id_postagem):
@@ -38,6 +36,23 @@ class Postagem(Resource):
         except:
             return {'message': 'An internal erros ocurred trying save post'}, 500
         return postagem.json()
+
+    def put(self, id_postagem):
+        dados = Postagem.argumentos.parse_args()
+
+        postagem_encontrada = PostagemModel.achar_postagem(id_postagem)
+
+        if postagem_encontrada:
+            postagem_encontrada.update_post(**dados)
+            postagem_encontrada.save_post()
+            return postagem_encontrada.json(), 200
+        postagem = PostagemModel(id_postagem, **dados)
+        try:
+            postagem.save_post(), 200
+        except:
+            {'message': 'an internal error ocorred trying save post'}, 500
+
+        return postagem.json(), 201 #created
 
 
     def delete(self):
