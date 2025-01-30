@@ -55,8 +55,18 @@ class Postagem(Resource):
         return postagem.json(), 201 #created
 
 
-    def delete(self):
-        pass
+    def delete(self, id_postagem):
+        postagem = Postagem.argumentos.parse_args(id_postagem)
+
+        if postagem:
+            try:
+                postagem.delete_post()
+                return {'message': 'Post delete sucesfull'}, 200
+            except:
+                return {'message': 'An internal error occorred trying to delete post'}, 500
+        return {'message': 'Postagem not found'}, 404
+
+
 
 
 
