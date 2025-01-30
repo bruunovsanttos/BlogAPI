@@ -50,12 +50,12 @@ class PostagemModel(banco.Model):
         banco.session.commit()
 
     #para normalizar os dados para salvar depois.
-    def update_post(self, title, content, category, tags, updateAt):
+    def update_post(self, title, content, category, tags):
         self.title = title
         self.content = content
         self.category = category
         self.tags = tags
-        self.updateAt = updateAt
+        #self.updateAt = updateAt não preciso colocar isso aqui porque o metodo ja puxa diretamente da ação do banco de dados
 
 
     @classmethod
