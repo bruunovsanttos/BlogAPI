@@ -14,6 +14,17 @@ class Postagem(Resource):
 
 
 
+    def get(self):
+        postagens = PostagemModel.achar_todas_postagens()
+
+        if postagens:
+            lista_de_postagens = []
+            for postagem in postagens:
+                lista_de_postagens.append(postagem.json())
+
+            return {'Postagens': lista_de_postagens}, 200
+        return {'message': 'No posts found'}, 404
+
     def get(self, id_postagem):#procura postagem por ID
         #de alguma forma eu tenho que receber as informações do banco de dados
         #Tenho que fazer uma função no models para receber as postagens do banco
@@ -56,7 +67,7 @@ class Postagem(Resource):
 
 
     def delete(self, id_postagem):
-        postagem = Postagem.argumentos.parse_args(id_postagem)
+        postagem = PostagemModel.achar_postagem(id_postagem)
 
         if postagem:
             try:

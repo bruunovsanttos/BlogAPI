@@ -64,3 +64,6 @@ class PostagemModel(banco.Model):
         if postagem:
             return postagem
         return None
+    @classmethod
+    def achar_todas_postagens(cls):
+        return cls.query.all() #query que busca todas as postagens

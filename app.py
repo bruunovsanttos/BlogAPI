@@ -21,9 +21,8 @@ api = Api(app)
 
 # a partir daqui colocar os endpoints para os metodos do resource
 
+api.add_resource(Postagem, '/postagens')
 api.add_resource(Postagem, '/postagens/<string:id_postagem>')
-
-
 
 #__________________________________________________________________________
 
