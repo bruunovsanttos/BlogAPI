@@ -4,7 +4,7 @@
 #inicialição do app
 from flask import Flask, jsonify
 from flask_restful import Api
-from resources import Postagem
+from resources import Postagem, PostagensLista
 
 import os
 
@@ -21,7 +21,7 @@ api = Api(app)
 
 # a partir daqui colocar os endpoints para os metodos do resource
 
-api.add_resource(Postagem, '/postagens')
+api.add_resource(PostagensLista, '/postagens')
 api.add_resource(Postagem, '/postagens/<string:id_postagem>')
 
 #__________________________________________________________________________

@@ -13,18 +13,6 @@ class Postagem(Resource):
     argumentos.add_argument('tags', type=str)
 
 
-
-    def get(self):
-        postagens = PostagemModel.achar_todas_postagens()
-
-        if postagens:
-            lista_de_postagens = []
-            for postagem in postagens:
-                lista_de_postagens.append(postagem.json())
-
-            return {'Postagens': lista_de_postagens}, 200
-        return {'message': 'No posts found'}, 404
-
     def get(self, id_postagem):#procura postagem por ID
         #de alguma forma eu tenho que receber as informações do banco de dados
         #Tenho que fazer uma função no models para receber as postagens do banco
@@ -78,6 +66,16 @@ class Postagem(Resource):
         return {'message': 'Postagem not found'}, 404
 
 
+class PostagensLista(Resource):
+    def get(self):
 
+        postagens = PostagemModel.achar_todas_postagens()
 
+        if postagens:
+            lista_de_postagens = []
+            for postagem in postagens:
+                lista_de_postagens.append(postagem.json())
+
+            return {'Postagens': lista_de_postagens}, 200
+        return {'message': 'No posts found'}, 404
 
