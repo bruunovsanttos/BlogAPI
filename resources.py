@@ -2,6 +2,7 @@
 #metodos get, put, post e delete
 from flask_restful import Resource, reqparse
 from models import PostagemModel
+from flask import request
 import sqlite3
 
 class Postagem(Resource):
@@ -33,7 +34,7 @@ class Postagem(Resource):
             return postagem.json(), 200
 
         except:
-            return {'message': 'An internal erros ocurred trying save post'}, 500
+            return {'message': 'An internal error occurred trying save post'}, 500
         return postagem.json()
 
     def put(self, id_postagem):
@@ -49,7 +50,7 @@ class Postagem(Resource):
         try:
             postagem.save_post(), 200
         except:
-            {'message': 'an internal error ocorred trying save post'}, 500
+            {'message': 'An internal error occu rred trying save post'}, 500
 
         return postagem.json(), 201 #created
 
@@ -68,14 +69,24 @@ class Postagem(Resource):
 
 class PostagensLista(Resource):
     def get(self):
+        term = request.args.get('term',
+                                '').lower()  # Converte o termo para minúsculo para fazer uma busca case-insensitive
 
-        postagens = PostagemModel.achar_todas_postagens()
+        if term:  # Se houver um termo de busca
+            # Realiza a busca usando LIKE para os campos title, content e category
+            postagens = PostagemModel.query.filter(
+                PostagemModel.title.ilike(f'%{term}%') |  # `ilike` é case-insensitive no SQLite
+                PostagemModel.content.ilike(f'%{term}%') |
+                PostagemModel.category.ilike(f'%{term}%')
+            ).all()
+        else:
+            postagens = PostagemModel.achar_todas_postagens()
 
-        if postagens:
-            lista_de_postagens = []
-            for postagem in postagens:
-                lista_de_postagens.append(postagem.json())
+            if postagens:
+                lista_de_postagens = []
+                for postagem in postagens:
+                    lista_de_postagens.append(postagem.json())
 
-            return {'Postagens': lista_de_postagens}, 200
-        return {'message': 'No posts found'}, 404
+                return {'Postagens': lista_de_postagens}, 200
+            return {'message': 'No posts found'}, 404
 
