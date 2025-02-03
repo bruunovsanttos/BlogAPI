@@ -41,11 +41,23 @@ Filtrar postagens de blog por um termo de pesquisa
 
 blog-api/  
 │  
-├── app.py                       # Arquivo principal onde a aplicação Flask é configurada  
-├── banco.db                     # Banco de dados SQLite gerado automaticamente   
-├── extensions/                  # Pasta para extensões do Flask (como a configuração do banco de dados)  
-├── postagem_model.py        # Definição do modelo de Postagem (PostagemModel)  
-├──postagem.py              # Definição dos recursos (Postagem e PostagensLista)  
-├── requirements.txt             # Dependências do projeto (bibliotecas Python)    
-└── README.md                 # Documentação do projeto  
+├── app.py  
+├── init  
+├── banco.db  
+├── extensions   
+├── models.py   
+├── resources.py   
+├── LICENSE  
+└── README.md  
+
+
+* __App.py__: Arquivo principal onde a aplicação Flask é configurada
+* __init__: inicializador do programa
+* __banco.db__: Banco de dados SQLite gerado automaticamente com SQLAlchemy
+* __Extensions__: Pasta para extensões do Flask (utilizada como a configuração do banco de dados)
+* __models.py__: Definição do modelo de Postagem
+* __resources.py__: Definição dos recursos (Postagem e PostagensLista)  
+* __License__: Licença MIT do repositório
+* __README.md__: Documentação do projeto
+
 
